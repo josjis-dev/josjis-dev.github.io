@@ -2,29 +2,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
-    <title>Redirecting to JosJis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirecting to JosJis</title>
 
-    <script>
-        window.location.replace(
-            "https://josjis-dev.github.io/josjis/"
-        );
-    </script>
+<script>
+(function () {
+    const oldPrefix = "/JosJis";
+    const newPrefix = "/josjis";
 
-    <noscript>
-        <meta http-equiv="refresh"
-        content="0;url=https://josjis-dev.github.io/josjis/">
-    </noscript>
+    const path = window.location.pathname;
+
+    const remainingPath = path.substring(oldPrefix.length);
+
+    const destination =
+        window.location.origin +
+        newPrefix +
+        remainingPath +
+        window.location.search +
+        window.location.hash;
+
+    window.location.replace(destination);
+})();
+</script>
 </head>
 <body>
-    <p>Redirecting to the new JosJis website...</p>
-    <p>
-        If you are not redirected,
-        <a href="https://josjis-dev.github.io/josjis/">
-            click here
-        </a>.
-    </p>
+<p>Redirecting to the new JosJis website...</p>
 </body>
 </html>
