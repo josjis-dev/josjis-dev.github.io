@@ -9,22 +9,26 @@
 <script>
 (function () {
     const path = window.location.pathname;
+    const match = path.match(/^\/JosJis(?:\/|$)/i);
 
-    const oldPrefix = "/JosJis";
+    if (!match) return;
 
-    if (path.toLowerCase().startsWith(oldPrefix.toLowerCase())) {
+    const remainingPath =
+        path.substring("/JosJis".length).toLowerCase();
 
-        const remainingPath =
-            path.substring(oldPrefix.length).toLowerCase();
+    const destination =
+        "https://josjis-dev.github.io/josjis" +
+        remainingPath +
+        window.location.search +
+        window.location.hash;
 
-        const destination =
-            "https://josjis-dev.github.io/josjis" +
-            remainingPath +
-            window.location.search +
-            window.location.hash;
+    document.write(
+        '<meta http-equiv="refresh" content="0;url=' +
+        destination.replace(/&/g, '&amp;').replace(/"/g, '&quot;') +
+        '">'
+    );
 
-        window.location.replace(destination);
-    }
+    window.location.replace(destination);
 })();
 </script>
 </head>
